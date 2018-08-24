@@ -63,3 +63,44 @@ let schema = makeExecutableSchema({
 ## Enable jwt
 
 To enable jwt modify `src/routes/graphql.js` and change the next line `app.use('/graphql', graphqlHTTP({` for `app.use('/graphql', verifyToken, graphqlHTTP({`.
+
+
+## Test application
+### Query all users
+```
+{
+  users{
+    name
+    email
+    role
+  }
+}
+```
+
+### Query one user
+```
+{
+  user(id: "5b7f497794d9ba003c8d40cc"){
+    name
+    email
+    role
+  }
+}
+```
+
+### Mutation
+```
+mutation($id:String!, $name:String!){
+  updateUser(id:$id, name:$name){
+    id,
+    name
+  }
+}
+```
+#### Query variables
+```
+{
+  "id": "5b7f497794d9ba003c8d40cc",
+  "name": "new name2"
+}
+```
